@@ -1,9 +1,13 @@
+const { SlashCommandBuilder } = require("discord.js");
+
 module.exports = {
-  name: 'help',
-  description: 'Shows bot commands',
+  data: new SlashCommandBuilder()
+    .setName("help")
+    .setDescription("Shows bot commands"),
+
   async execute(interaction) {
     await interaction.reply({
-      content: 'Commands: /ping /verify /help',
+      content: "Commands: /ping /verify /help",
       ephemeral: true
     });
   }
