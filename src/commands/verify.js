@@ -6,25 +6,21 @@ module.exports = {
     .setDescription("Start age verification"),
 
   async execute(interaction) {
-    const embed = new EmbedBuilder()
-      .setTitle("Age Verification")
-      .setDescription(
-        "Check your DMs. Send your age and a photo to complete verification."
-      )
-      .setColor("Blue");
-
     await interaction.reply({
-      embeds: [embed],
+      content: "📩 Έλεγξε τα DM σου για την επαλήθευση.",
       ephemeral: true
     });
 
     try {
       await interaction.user.send(
-        "Hello! To verify your age, send your age and a photo. Your information will be reviewed by staff."
+        "👋 Για να κάνεις verify:\n\n" +
+        "1️⃣ Στείλε την ηλικία σου\n" +
+        "2️⃣ Στείλε μια φωτογραφία για επιβεβαίωση\n\n" +
+        "Μόλις σταλούν, θα πάνε για έλεγχο από staff."
       );
     } catch {
       await interaction.followUp({
-        content: "I cannot DM you. Enable direct messages from server members.",
+        content: "❌ Δεν μπορώ να σου στείλω DM. Άνοιξε τα DM από server members.",
         ephemeral: true
       });
     }
