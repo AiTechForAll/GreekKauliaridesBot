@@ -1,4 +1,9 @@
-const {
+async execute(message) {
+
+  console.log("DM MESSAGE RECEIVED:", message.author.tag);
+
+  if (message.guild) return;
+  const {
   EmbedBuilder,
   ActionRowBuilder,
   ButtonBuilder,
@@ -11,8 +16,6 @@ module.exports = {
   name: "messageCreate",
 
   async execute(message) {
-
- console.log("MESSAGE RECEIVED", message.author.tag);
 
  if (message.guild) return;
     // Μόνο DM
