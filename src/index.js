@@ -82,10 +82,13 @@ client.on('interactionCreate', async interaction => {
       console.error(error);
 
       if (!interaction.replied) {
-        await interaction.reply({
-          content:"Command error.",
-          ephemeral:true
-        });
+       await interaction.reply({
+content:"Command error.",
+flags:64
+}); 
+        git add .
+git commit -m "fix verify interaction"
+git push
       }
     }
   }
