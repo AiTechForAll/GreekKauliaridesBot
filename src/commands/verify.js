@@ -1,4 +1,4 @@
-const { SlashCommandBuilder, EmbedBuilder } = require("discord.js");
+const { SlashCommandBuilder } = require("discord.js");
 
 module.exports = {
   data: new SlashCommandBuilder()
@@ -6,23 +6,33 @@ module.exports = {
     .setDescription("Start age verification"),
 
   async execute(interaction) {
-    await interaction.reply({
-      content: "📩 Έλεγξε τα DM σου για την επαλήθευση.",
-      ephemeral: true
+
+    await interaction.deferReply({
+      flags: 64
     });
 
     try {
+
       await interaction.user.send(
-        "👋 Για να κάνεις verify:\n\n" +
-        "1️⃣ Στείλε την ηλικία σου\n" +
-        "2️⃣ Στείλε μια φωτογραφία για επιβεβαίωση\n\n" +
-        "Μόλις σταλούν, θα πάνε για έλεγχο από staff."
+        "👋 Age Verification\n\n" +
+        "Στείλε μου:\n" +
+        "1️⃣ Την ηλικία σου\n" +
+        "2️⃣ Μια φωτογραφία\n\n" +
+        "Τα στοιχεία θα σταλούν στο staff για έλεγχο."
       );
-    } catch {
-      await interaction.followUp({
-        content: "❌ Δεν μπορώ να σου στείλω DM. Άνοιξε τα DM από server members.",
-        ephemeral: true
+
+      await interaction.editReply({
+        content: "📩 Σου έστειλα DM για verification."
       });
+
+    } catch(error) {
+
+      console.error(error);
+
+      await interaction.editReply({
+        content: "❌ Δεν μπορώ να σου στείλω DM. Άνοιξε τα DM από server members."
+      });
+
     }
   }
 };
