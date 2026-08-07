@@ -12,6 +12,9 @@ module.exports = {
 
   async execute(message) {
 
+ console.log("MESSAGE RECEIVED", message.author.tag);
+
+ if (message.guild) return;
     // Μόνο DM
     if (message.guild) return;
 
